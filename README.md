@@ -323,7 +323,7 @@ sample-event.json (a test EventBridge event to simulate GuardDuty)
   }
 }
 
-2) Package the Lambda
+## 2) Package the Lambda
 
 From repo root:
 
@@ -335,7 +335,7 @@ cd ..
 
 Important: If you modify the ZIP, Terraform needs the source_code_hash to match — our main.tf includes filebase64sha256(var.lambda_zip_path) so re-run terraform apply after zipping.
 
-3) Initialize Terraform and apply
+## 3) Initialize Terraform and apply
 
 From project root:
 
@@ -358,11 +358,11 @@ EventBridge rule
 
 Important: check the terminal for outputs (S3 bucket name, SNS ARN, Lambda name). If terraform fails because the zip path hash changed, re-run zip then terraform apply again.
 
-4) Confirm SNS subscription
+## 4) Confirm SNS subscription
 
 Check your email for a subject like “AWS Notification — Subscription Confirmation” and click Confirm subscription. Until you confirm, email alerts won’t deliver.
 
-5) Test the flow by simulating a GuardDuty event
+## 5) Test the flow by simulating a GuardDuty event
 
 Use AWS CLI to put the test event to EventBridge (same region as Terraform deployment):
 
@@ -381,7 +381,7 @@ S3 bucket aws s3 ls s3://<bucket-name>/guardduty/ to see archived JSON
 
 DynamoDB table for the record (PutItem used to record dedupe key)
 
-6) Validate key PoC behaviors
+## 6) Validate key PoC behaviors
 
 Dedup: If you send the same detail.id again, Lambda should enqueue but DynamoDB conditional write prevents duplicate processing.
 
@@ -389,7 +389,7 @@ Filtering: The EventBridge rule only passes severity >= 4. Tweak sample-event.js
 
 Error handling: If SNS fails (no confirmed subscription), Lambda still logs the error — check CloudWatch.
 
-7) Cost-control & security quick wins (apply now)
+## 7) Cost-control & security quick wins (apply now)
 
 Keep Lambda memory to 256MB & timeout short (10s).
 
@@ -401,7 +401,7 @@ Encrypt S3; retention = 30 days (adjust s3_retention_days).
 
 For production, switch S3 encryption to KMS and secure IAM policies further — in PoC we used default AES256.
 
-8) Clean up (when finished with PoC)
+## 8) Clean up (when finished with PoC)
 
 To avoid charges, destroy the infra:
 
