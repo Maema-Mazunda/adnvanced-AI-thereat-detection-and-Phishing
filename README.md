@@ -1,6 +1,6 @@
 # Advanced-AI-threat-detection-and-Phishing
 
-Quick overview (what we’ll create)
+## Quick overview (what we’ll create)
 EventBridge rule that listens for GuardDuty findings (simulated for PoC) and invokes a Lambda.
 Lambda (Python) that dedupes, enriches slightly, persists to S3 & DynamoDB, and publishes to SNS (email).
 SNS topic with email subscription (you’ll confirm subscription).
