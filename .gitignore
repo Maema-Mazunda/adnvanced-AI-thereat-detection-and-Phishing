@@ -9,6 +9,9 @@ aws/
 aws-cli/
 awscli/
 awscliv2/
+# Ignore AWS CLI installer
+awscliv2.zip
+
 
 # Terraform specific files
 .terraform/
