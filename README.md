@@ -1,1 +1,1 @@
-# adnvanced-AI-thereat-detection-and-Phishing
+# Advanced-AI-threat-detection-and-Phishing
