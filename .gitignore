@@ -1,0 +1,27 @@
+# AWS specific files
+.aws/
+cdk.out/
+.serverless/
+
+# AWS CLI installation packages (zip, installers, extracted folders)
+awscliv2.zip
+aws/
+aws-cli/
+awscli/
+awscliv2/
+
+# Terraform specific files
+.terraform/
+*.tfplan
+*.tfstate*
+
+# Node.js dependencies (if applicable)
+node_modules/
+
+# Python dependencies/artifacts (if applicable)
+__pycache__/
+*.pyc
+venv/
+
+# Log files
+*.log
