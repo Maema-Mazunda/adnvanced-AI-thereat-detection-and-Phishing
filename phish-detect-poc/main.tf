@@ -1,3 +1,9 @@
+
+# S3 bucket for phishing artifacts
+resource "aws_s3_bucket" "archive" {
+  bucket = "phish-detect-${random_id.suffix.hex}"
+}
+
 # Random suffix for unique resources
 resource "random_id" "suffix" {
 byte_length = 4
@@ -5,25 +11,21 @@ byte_length = 4
 
 
 # S3 bucket for phishing artifacts
-resource "aws_s3_bucket" "archive" {
-bucket = "${var.project_name}-${random_id.suffix.hex}"
-}
-
-
 resource "aws_s3_bucket_lifecycle_configuration" "archive_lifecycle" {
-bucket = aws_s3_bucket.archive.id
+  bucket = aws_s3_bucket.archive.id
 
+  rule {
+    id     = "expire"
+    status = "Enabled"
 
-rule {
-id = "expire"
-status = "Enabled"
+    filter {}  # empty filter applies to the whole bucket
 
-
-expiration {
-days = var.s3_retention_days
+    expiration {
+      days = var.s3_retention_days
+    }
+  }
 }
-}
-}
+
 
 
 # SNS topic for alerts
