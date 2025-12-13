@@ -1,12 +1,18 @@
 output "s3_bucket" {
-  value = aws_s3_bucket.archive.id
+value = aws_s3_bucket.archive.bucket
 }
+
+
 output "sns_topic_arn" {
-  value = aws_sns_topic.alerts.arn
+value = aws_sns_topic.alerts.arn
 }
+
+
 output "lambda_name" {
-  value = aws_lambda_function.processor.function_name
+value = aws_lambda_function.phish_detector.function_name
 }
+
+
 output "ddb_table" {
-  value = aws_dynamodb_table.findings.name
+value = aws_dynamodb_table.phish_events.name
 }

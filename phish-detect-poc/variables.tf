@@ -1,6 +1,25 @@
-variable "aws_region" { type = string; default = "eu-west-1" }
-variable "alert_email" { type = string }
-variable "lambda_memory" { type = number; default = 256 }
-variable "lambda_timeout" { type = number; default = 10 }
-variable "s3_retention_days" { type = number; default = 30 }
-variable "lambda_zip_path" { type = string; default = "${path.module}/lambda_src/detector.zip" }
+variable "aws_region" {
+description = "AWS region"
+type = string
+default = "eu-west-1"
+}
+
+
+variable "project_name" {
+description = "Project name"
+type = string
+default = "phish-detect-poc"
+}
+
+
+variable "s3_retention_days" {
+description = "Days to retain S3 objects"
+type = number
+default = 30
+}
+
+
+variable "alert_email" {
+description = "Email address for SNS alerts"
+type = string
+}
